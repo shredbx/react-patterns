@@ -58,21 +58,25 @@ type CurrentUserStore = DataSlice<CurrentUser> & {
   setCurrentUser: (user: CurrentUser | null) => void;
 };
 
-export const useCurrentUserStore = create<CurrentUserStore>()((...args) => ({
-  // Still generic slice under the hood
-  ...createDataStoreSlice<CurrentUser>(null)(...args),
+export const useCurrentUserStore = create<CurrentUserStore>()(
+  (set, get, api) => ({
+    // Still generic slice under the hood
+    ...createDataStoreSlice<CurrentUser>(null)(set, get, api),
 
-  // Aliases (optional) for readability in domain code
-  get currentUser() {
-    return (useCurrentUserStore.getState().data as CurrentUser | null) ?? null;
-  },
-  setCurrentUser(user: CurrentUser | null) {
-    useCurrentUserStore.getState().setData(user);
-  },
-}));
+    // Aliases (optional) for readability in domain code
+    get currentUser(): CurrentUser | null {
+      return (
+        (useCurrentUserStore.getState().data as CurrentUser | null) ?? null
+      );
+    },
+    setCurrentUser(user: CurrentUser | null): void {
+      useCurrentUserStore.getState().setData(user);
+    },
+  })
+);
 
 export function CurrentUserPanel() {
-  const currentUser = useCurrentUserStore((s) => s.data);
+  const currentUser = useCurrentUserStore((s) => s.data) as CurrentUser | null;
   const setCurrentUser = useCurrentUserStore.getState().setData;
 
   return (

@@ -1,1 +1,1 @@
-export * from "./1-create-examples";
+export * from "./patterns";

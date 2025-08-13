@@ -29,7 +29,10 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
-    "zustand": "^5.0.0"
+    "immer": "^10.1.1",
+    "use-debounce": "^10.0.5",
+    "zod": "^4.0.17",
+    "zustand": "^5.0.7"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.4",
