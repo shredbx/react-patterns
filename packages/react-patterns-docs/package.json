@@ -1,0 +1,47 @@
+{
+  "name": "react-patterns-docs",
+  "version": "1.0.0",
+  "description": "Documentation and examples for React patterns with ready-to-use implementations",
+  "main": "index.ts",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./index.ts"
+    },
+    "./libraries/*": {
+      "types": "./dist/libraries/*/index.d.ts",
+      "default": "./libraries/*/index.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "libraries",
+    "index.ts"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "dependencies": {
+    "zustand": "^5.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.4",
+    "@testing-library/react": "^16.3.0",
+    "@types/jest": "^30.0.0",
+    "@types/react": "^19.0.0",
+    "jest": "^30.0.5",
+    "jest-environment-jsdom": "^30.0.5",
+    "ts-jest": "^29.4.1",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=19.0.0"
+  }
+}
